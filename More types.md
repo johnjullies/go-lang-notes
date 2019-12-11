@@ -252,3 +252,78 @@ If you only want the index, you can omit the second variable.
 ```go
 for i := range pow
 ```
+
+## Maps
+A map maps keys to values.
+
+The zero value of a map is `nil`. A `nil` map has no keys, nor can keys be added.
+
+The make function returns a map of the given type, initialized and ready for use.
+
+```go
+type Vertex struct {
+	Lat, Long float64
+}
+
+var m map[string]Vertex
+
+func main() {
+	m = make(map[string]Vertex)
+	m["Bell Labs"] = Vertex{
+		40.68433, -74.39967,
+	}
+	fmt.Println(m)
+}
+```
+
+### Map literals
+Like `struct` literals but the keys are __required__
+
+```go
+var m = map[string]Vertex{
+	"Bell Labs": Vertex{
+		40.68433, -74.39967,
+	},
+	"Google": Vertex{
+		37.42202, -122.08408,
+	},
+}
+```
+
+Top-level type name _can be_ omitted
+```go
+var m = map[string]Vertex{
+	"Bell Labs": {40.68433, -74.39967},
+	"Google":    {37.42202, -122.08408},
+}
+```
+
+### Mutating maps
+```go
+m[key] = elem   // insert or update an element
+elem = m[key]   // retrieve an element
+delete(m, key)  // delete an element
+```
+
+Test that a key is present
+```go
+elem, ok := m[key]
+```
+
+If `key` is in `m` then `ok` is true, else false
+
+If `key` is not in the map then `elem` is the zero value for the map's element type
+
+## Function values
+Functions are values and can be passed around just like other values
+
+## Function closures
+```go
+func adder() func(int) int {
+	sum := 0
+	return func(x int) int {
+		sum += x
+		return sum
+	}
+}
+```
