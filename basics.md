@@ -7,7 +7,11 @@ Every Go program is made up of packages. Starts with the package declaration.
 package main
 ```
 
-By convention, the package name is the same as the last element of the import path. For instance, the `"math/rand"` package comprises files that begin with the statement `package rand`. 
+By convention, the package name is the same as the last element of the import path. For instance, the `"math/rand"` package comprises files that begin with the statement `package rand`.
+
+A package is a collection of source files in the same directory. Functions, types, variables, and constants defined in one source file are visible to all other source files within the same package.
+
+A **module** is a collection of related Go packages that are released together. A **repository** is a collection of one ore more modules.
 
 ## Imports
 Parenthesized, "factored" import statement. 
